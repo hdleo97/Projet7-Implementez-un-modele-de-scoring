@@ -178,9 +178,9 @@ def main():
 
     #Compute decision according to the best threshold
     #if prediction <= xx :
-    #    decision = "<font color='green'>**LOAN GRANTED**</font>"
+    #    decision = "<font color='green'>**PRÊT ACCORDE**</font>"
     #else:
-    #    decision = "<font color='red'>**LOAN REJECTED**</font>"
+    #    decision = "<font color='red'>**PRÊT REJETE**</font>"
 
     #st.write("**Decision** *(with threshold xx%)* **: **", decision, unsafe_allow_html=True)
 
@@ -196,7 +196,7 @@ def main():
         number = st.slider("Pick a number of features…", 0, 20, 5)
 
         fig, ax = plt.subplots(figsize=(10, 10))
-        explainer = shap.TreeExplainer(load_model())
+        explainer = shap.LinearExplainer(load_model())
         shap_values = explainer.shap_values(X)
         shap.summary_plot(shap_values[0], X, plot_type ="bar", max_display=number, color_bar=False, plot_size=(5, 5))
         st.pyplot(fig)
