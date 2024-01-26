@@ -14,6 +14,7 @@ import imblearn
 import requests
 import json
 from sklearn.linear_model import LogisticRegression
+from zipfile import ZipFile
 
 def main():
     api_main_url = 'http://localhost:8000'
@@ -21,11 +22,13 @@ def main():
     # welcome = response.json()
     # st.write(welcome['welcome'])
 
+    z = ZipFile("application_train.zip")
+
     #Chargement du model
     clf = joblib.load("pipeline_depense_pred.joblib")
     model = LogisticRegression()
 
-    data = pd.read_csv('application_train.csv', encoding ='utf-8')
+    data = pd.read_csv(z.open('application_train.csv')) #pd.read_csv('application_train.csv', encoding ='utf-8')
     df = pd.read_csv('data_pred.csv', encoding ='utf-8')
     target = data['TARGET']
     # data_pred = data.join(data_test)
@@ -259,7 +262,7 @@ def main():
 
     #Compute decision according to the best threshold
     if prediction['Prédiction'] == 0 :
-       decision = "<font color='green'>**PRÊT ACCEPTE**</font>"
+       decision = "<font color='green'>**PRÊT ACCEPTER**</font>"
     else:
        decision = "<font color='red'>**PRÊT REJETE**</font>"
 
