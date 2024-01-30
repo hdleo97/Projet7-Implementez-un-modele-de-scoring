@@ -13,14 +13,12 @@ from fastapi import FastAPI, Path
 import joblib
 import pandas as pd
 import shap
-# from tensorflow.keras.models import load_model
 import numpy as np
 import io
 from sklearn.neighbors import NearestNeighbors
 from sklearn.impute import SimpleImputer
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-shap.initjs()
 #from tensorflow.keras.models import load_model
 #Librairie de l'API
 import requests
