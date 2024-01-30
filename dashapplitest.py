@@ -26,7 +26,6 @@ shap.initjs()
 import requests
 import json
 from sklearn.linear_model import LogisticRegression
-from zipfile import ZipFile
 
 
 def main():
@@ -34,8 +33,6 @@ def main():
     # response = requests.get(api_main_url + '/')
     # welcome = response.json()
     # st.write(welcome['welcome'])
-
-    z = ZipFile("application_train.zip")
 
     #Chargement du model
     clf = joblib.load("pipeline_depense_pred.joblib")
@@ -162,7 +159,7 @@ def main():
 
         # Initialisation du modèle des plus proches voisins
         nn_model = NearestNeighbors(n_neighbors=n_neighbors)
-        
+
         # Entraînement du modèle sur l'ensemble des données
         nn_model.fit(df[relevant_features])
 
